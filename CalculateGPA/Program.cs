@@ -20,12 +20,28 @@
             int gradeA = 4;
             int gradeB = 3;
 
+            int totCreditHours = course1Hours + course2Hours + course3Hours + course4Hours + course5Hours;
             int gradeCredit = (course1Hours * gradeA) + (course2Hours * gradeB) + (course3Hours * gradeB)
                               + (course4Hours * gradeB) + (course5Hours * gradeA);
 
-            int GPA = gradeCredit/(course1Hours + course2Hours + course3Hours + course4Hours + course5Hours);
+            decimal GPA = gradeCredit/(decimal)totCreditHours;
+            //to get the first three digits
+            int leadDigit = (int)GPA;//first digit
+            int firstDigit = (int)(GPA * 10) % 10;//first digit after the decimal point
+            int secDigit = (int)(GPA * 100) % 10;//second digit after the decimal point
 
-            Console.WriteLine(GPA);
+            Console.WriteLine($@"
+Student: {studentName}
+
+Course          Grade      Credit Hours
+{course1Name}         {gradeA}          {course1Hours}
+{course2Name}         {gradeB}          {course2Hours}
+{course3Name}         {gradeB}          {course3Hours}
+{course4Name}  {gradeB}          {course4Hours}
+{course5Name}      {gradeA}          {course5Hours}
+
+Final GPA:          {leadDigit}.{firstDigit}{secDigit}
+");
 
 
         }
